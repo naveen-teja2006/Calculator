@@ -1,0 +1,124 @@
+<!-------CALCULATOR PROGRAM------->
+<title>CALCULATOR</title>
+<!---Calculator Container--->
+<div id="container">
+  <h1>Calculator</h1>
+  <div id="div-calculator-input">
+    <input id = "calculator_input" readonly>
+  </div>
+  <!--All Calculator Buttons-->
+  <div id="buttons">
+    <button onclick = "display('+')" id="operator-btn">+</button>
+    <button onclick = "display('7')">7</button>
+    <button onclick = "display('8')">8</button>    
+    <button onclick = "display('9')">9</button>    
+    <button onclick = "display('-')" id="operator-btn">-</button>
+    <button onclick = "display('4')">4</button>    
+    <button onclick = "display('5')">5</button>    
+    <button onclick = "display('6')">6</button>
+    <button onclick = "display('*')" id="operator-btn">*</button>
+    <button onclick = "display('1')">1</button>    
+    <button onclick = "display('2')">2</button>    
+    <button onclick = "display('3')">3</button>    
+    <button onclick = "display('/')" id="operator-btn">/</button>
+    <button onclick = "display('0')">0</button>
+    <button onclick = "display('.')">.</button>
+    <button onclick = "calculate()">=</button>
+    <button id="prefix">×</button>
+    <button onclick = "clearinput()" id="operator-btn">C</button>
+  </div>
+</div>
+<style>
+  /*CSS FOR CALCULATOR*/
+body{
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(11, 16, 10, 1);
+}
+h1{
+  text-align:center;
+  color:#FFFFFF;
+  font-size:10vw;
+}
+#container{
+  margin:0;
+  padding:0;
+  background:rgba(57, 66, 55, 0.6);
+  width:98vw;
+  height:96vh;
+  border-radius:35px;
+  box-shadow:0px 0px 12px 3px #919198;
+}
+#buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:10px;
+  margin-top:1.9rem;
+  margin-left:0.6rem;
+}
+#buttons > button{
+  border:0px;
+  color:white;
+  font-size:30px;
+  background:rgba(21, 21, 21, 1);
+  font-weight:bold;
+  font-family:serif;
+  border-radius:50%;
+  width:5rem;
+  height:5rem;
+  box-shadow:1px 1px 12px 4px inset black;
+}
+#buttons > button:active{
+  background:rgba(57, 66, 55, 1);
+}
+button#operator-btn{
+  background:rgba(73, 158, 52, 1);
+}
+#calculator_input{
+  width:100%;
+  border:1px solid outset;
+  outline:0px solid;
+  font-size:3.9rem;
+  color:white;
+  font-weight:bold;
+  background:#3C5C3A;
+}
+@media(min-width:680px){
+  #container{
+    height:46vh;
+  }
+  #buttons{
+    display:grid;
+    place-items:center;
+    align-items:center;
+  }
+}
+</style>
+<script>
+//JAVASCRIPT FOR CALCULATOR
+const calculator_input = document.getElementById("calculator_input");
+let prefix = document.getElementById("prefix");
+function display(input){
+  /*Here display function is a parameterized function having parameter inputs of buttons*/
+  calculator_input.value += input;
+  calculator_input.scrollLeft = calculator_input.scrollWidth;
+}
+prefix.addEventListener("click",() =>{
+  calculator_input.value = calculator_input.value.slice(0,-1);
+});
+function clearinput(){
+  calculator_input.value = "";
+}
+function calculate(){
+  /*Exception Handling When Input Has Exception*/
+  try{
+  calculator_input.value = eval(calculator_input.value);
+    calculator_input.scrollLeft = calculator_input.scrollWidth
+  }
+  catch(error){
+    calculator_input.value = "Error";
+  }
+}
+</script>
